@@ -3,15 +3,35 @@ from rest_framework.decorators import api_view
 from .serializers import CrimeSerializer
 from rest_framework.response import Response
 from .models import Crime
+from user.models import women
+import requests
+import json
 
 @api_view(['POST'])
 def ReportCrime(request):
     if request.method == 'POST':
+        data = request.data
         ser = CrimeSerializer(data=request.data)    
 
         if ser.is_valid():
             ser.save()
-            return Response(ser.data)
+            cont = women.objects.get(pk=request.data['number'])
+            res = {}
+            if (cont.emergency_contact1):
+                res.update({"emergency_contact1":cont.emergency_contact1})
+            if (cont.emergency_contact2):
+                res.update({"emergency_contact2":cont.emergency_contact2})
+            if (cont.emergency_contact3):
+                res.update({"emergency_contact3":cont.emergency_contact3})
+            if (cont.emergency_contact4):
+                res.update({"emergency_contact4":cont.emergency_contact4})
+            if (cont.emergency_contact5):
+                res.update({"emergency_contact5":cont.emergency_contact5})
+            req = requests.get('https://us1.locationiq.com/v1/reverse.php?key=c3878484ac573f&lat=' + str(data['lattitude']) + '&lon=' + str(data['longitude']) + '&format=json')
+            dat = json.loads(req.text)
+            res.update({"address":dat["address"]})
+            print(res)
+            return Response(res)
         return Response(ser.errors)
 
 @api_view(['GET'])

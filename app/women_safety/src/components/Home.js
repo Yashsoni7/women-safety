@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
-import { Text, TextInput, View, TouchableHighlight, StyleSheet, FlatList } from 'react-native'
+import React, { Component } from 'react';
+import { Text, TextInput, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native'
+import getLocation from '../util/GetLocation';
+import SendSMS from '../util/SendSMS';
+
+const {baseUrl} = require('../config');
 
 import BackgroundTask from 'react-native-background-task'
 
@@ -13,6 +17,7 @@ export default class Home extends Component {
                 number:'12345678',
                 name:'adfdgg'
             }],
+            message : '',
         };
     }
 
@@ -41,7 +46,7 @@ export default class Home extends Component {
                 />       
             </View>
         )
-    }    
+    };    
 
     _onPressButton(){
         let contacts = this.state.contacts;
@@ -54,9 +59,57 @@ export default class Home extends Component {
         this.setState({contacts});
     }
 
-    getLocation(){
-        console.log('etting loc');
+    async sendMsg(){
+        try {
+            let success = await SendSMS('9930440152',this.state.message);
+            this.setState({
+                helpText : '',
+            })
+        } catch (error) {
+            console.error(error);
+        }
+
+    }    
+
+    async sendLocation(){
+        const location =  await getLocation();
+        let lat = location.latitude;
+        let long = location.longitude;
+        console.log(lat);
+        let url = baseUrl+'/crime/report/';
+
+        try {
+
+            // const phu = await AsyncStorage.getItem('phone_number');
+            // console.log(phu);
+            
+            let response = await fetch(url,{
+                method: 'POST',
+                headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    number : '918779079797',
+                    lattitude : lat,
+                    longitude : long,
+            }),
+        });
+
+            console.log('resp ',response);
+            
+            let res =await response.json();
+
+            console.log('res ',res);
+            this.setState({
+                message : res.address,
+            });
         
+        } catch (error) {
+                
+            console.error(error);
+        }
+
     }
 
     async checkStatus() {
@@ -129,8 +182,19 @@ export default class Home extends Component {
 
                 <View style={styles.center,{flex:1}}>       
                     <View style={styles.button}>
-                        <TouchableHighlight  onPress={()=>this.onSubmit()} >
-                        <Text>get loc</Text>
+                        <TouchableHighlight
+                            onPress={()=>this.sendLocation()}
+                        >
+                        <Text>Send Location</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                <View style={styles.center,{flex:1}}>       
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.sendMsg()}
+                        >
+                        <Text>Send Message</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
