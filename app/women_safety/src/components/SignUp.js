@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native'
+import { Text, TextInput, View, Button, StyleSheet, Alert, TouchableHighlight } from 'react-native'
 
+const {baseUrl} = require('../config');
 
 export default class SignUp extends Component {
 
@@ -18,24 +19,40 @@ export default class SignUp extends Component {
         }
     }
 
-    onSubmit = (phu) => {
+    async onSubmit(){
         //Alert.alert("Form Submitted");
-        url = 'https://4f2677e1.ngrok.io/user/number/';
-        fetch(url,{
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              phu: phu,
-            }),
-        })
-        .then((response) => response.json())
-        .catch((error) => {
-          console.error(error);
-        });
-    } 
+        let url = baseUrl+'/user/number/';
+
+        
+        console.log('url ',url);
+
+        try {
+            
+            let response = await fetch(url,{
+                method: 'POST',
+                headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phone_number: this.state.phu,
+                }),
+            });
+
+            console.log('resp ',response);
+            
+            let res =await response.json();
+            
+
+            console.log('res ',res);
+
+        
+        } catch (error) {
+                
+            console.error(error);
+        }
+
+} 
 
     render() {
         return (
@@ -57,11 +74,11 @@ export default class SignUp extends Component {
                     />
                 </View>
                 <View style={styles.button}>
-                    <Button
-                        title="Sign Up"
-                        color="#0f0f0f"
-                        onPress={this.onSubmit(this.state.phu)}
-                    />
+                    <TouchableHighlight
+                        onPress={()=>this.onSubmit()}
+                    >
+                        <Text>submit</Text>
+                    </TouchableHighlight>
                 </View>
             </View>
         )
