@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TextInput, View, TouchableHighlight } from 'react-native'
-
-
-function row (number = ""){
-
-
-    return(
-        <View style={}>
-            
-        </View>
-    )
-}
-
+import { Text, TextInput, View, TouchableHighlight, StyleSheet } from 'react-native'
 
 
 export default class SignUp extends Component {
