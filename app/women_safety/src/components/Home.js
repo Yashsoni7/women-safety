@@ -1,51 +1,35 @@
 import React, { Component } from 'react'
-import { Text, TextInput, View, TouchableHighlight, StyleSheet } from 'react-native'
+import { Text, TextInput, View, TouchableHighlight } from 'react-native'
+
+
+function row (number = ""){
+
+
+    return(
+        <View style={}>
+            
+        </View>
+    )
+}
 
 
 
 export default class Home extends Component {
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super(this.props);
         this.state={
             helpTxt:'',
             contacts:[],
-        };
+        }
     }
 
 
-    row (number = "",index){
-
-
-        return(
-            <View style={{flex:1}}>
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(name) => {
-                        let contacts = this.state.contacts;
-                        contacts[index].name = name;
-                        this.setState({contacts});
-                    }}
-                    value={this.state.contacts[index].name}
-                />
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(number) => {
-                        let contacts = this.state.contacts;
-                        contacts[index].number = number;
-                        this.setState({contacts});
-                    }}
-                    value={this.state.contacts[index].number}
-
-                />       
-            </View>
-        )
-    }    
 
 
     render() {
         return (
-            <View style={{flex:1}}>
+            <View>
                 <View style={styles.helpmsg} >
                     <Text style={{}}> HELP MSG:</Text>
                     <TextInput 
@@ -54,12 +38,12 @@ export default class Home extends Component {
                         value={this.state.helpText}
                     />
                 </View>
-                <View style={{flex:1}}>
-                    <View style={styles.contactHeader}>
+                <View>
+                    <View style={contactHeader}>
                         <Text>Contacts:</Text>
                         <TouchableHighlight>
-                            <View style={styles.contactAddBtn}>
-                                <Text>+</Text>
+                            <View style={contactAddBtn}>
+                                +
                             </View>
                         </TouchableHighlight>
                     </View>
@@ -73,7 +57,7 @@ const styles = StyleSheet.create({
 
     helpmsg:{
         flex:1,
-        flexDirection: 'row'
+        flexDirection:'row'
     },
     contactHeader:{
         flex:1,
