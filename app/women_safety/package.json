@@ -15,6 +15,7 @@
     "@react-navigation/stack": "^5.1.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-background-task": "^0.2.1",
     "react-native-camera": "^3.19.0",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-get-location": "^1.4.2",

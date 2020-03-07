@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, TextInput, View, TouchableHighlight, StyleSheet, FlatList } from 'react-native'
 
-
+import BackgroundTask from 'react-native-background-task'
 
 export default class Home extends Component {
 
@@ -46,18 +46,47 @@ export default class Home extends Component {
     _onPressButton(){
         let contacts = this.state.contacts;
         if(contacts.length>=5) return;
-        
+
         contacts.push({
             number:'',
             name:''
         });
         this.setState({contacts});
-    };
+    }
 
     getLocation(){
         console.log('etting loc');
         
     }
+
+    async checkStatus() {
+        const status = await BackgroundTask.statusAsync()
+        
+        if (status.available) {
+            console.log('running bg');
+            return
+        }
+        
+        const reason = status.unavailableReason
+        if (reason === BackgroundTask.UNAVAILABLE_DENIED) {
+            Alert.alert('Denied', 'Please enable background "Background App Refresh" for this app')
+        } else if (reason === BackgroundTask.UNAVAILABLE_RESTRICTED) {
+            Alert.alert('Restricted', 'Background tasks are restricted on your device')
+        }
+    }
+    
+    startAlert(){
+        console.log('alert clicked ');
+
+        BackgroundTask.schedule({
+            period: 5*60, // Aim to run every 30 mins - more conservative on battery
+          });
+          
+          // Optional: Check if the device is blocking background tasks or not
+          this.checkStatus();
+    }
+
+
 
     render() {
 
@@ -100,7 +129,7 @@ export default class Home extends Component {
 
                 <View style={styles.center,{flex:1}}>       
                     <View style={styles.button}>
-                        <TouchableHighlight  onPress={()=>this.onSubmit()}                        >
+                        <TouchableHighlight  onPress={()=>this.onSubmit()} >
                         <Text>get loc</Text>
                         </TouchableHighlight>
                     </View>

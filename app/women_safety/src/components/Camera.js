@@ -3,6 +3,10 @@ import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-nat
 import { RNCamera } from 'react-native-camera';
 
 export default class Camera extends Component {
+
+    componentDidMount(){
+      this.takePicture();
+    }
     
     takePicture = async() => {
         if (this.camera) {
@@ -21,7 +25,7 @@ export default class Camera extends Component {
             }}
             style={styles.preview}
             type={RNCamera.Constants.Type.back}
-            flashMode={RNCamera.Constants.FlashMode.on}
+            flashMode={RNCamera.Constants.FlashMode.off}
             androidCameraPermissionOptions={{
                 title: 'Permission to use camera',
                 message: 'We need your permission to use your camera',
@@ -52,12 +56,12 @@ export default class Camera extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     flexDirection: 'column',
     backgroundColor: 'black',
   },
   preview: {
-    flex: 1,
+    flex: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

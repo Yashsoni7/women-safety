@@ -21,6 +21,9 @@ import SignUp from './src/components/SignUp';
 import Home from './src/components/Home';
 import SplashScreen from './src/components/SplashScreen';
 import Otp from './src/components/Otp';
+import Camera from './src/components/Camera';
+
+let { define } = require('./src/util/bg');
 
 import {
   Header,
@@ -32,6 +35,14 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import BackgroundTask from 'react-native-background-task'
+
+
+BackgroundTask.define(async () => {
+  await define();
+  BackgroundTask.finish()
+})
 
 
 const Stack = createStackNavigator();
@@ -45,6 +56,7 @@ const App: () => React$Node = () => {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Otp" component={Otp} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Camera" component={Camera} />
       </Stack.Navigator>
     </NavigationContainer>
   );
