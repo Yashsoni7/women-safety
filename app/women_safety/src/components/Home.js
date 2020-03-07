@@ -48,6 +48,10 @@ export default class Home extends Component {
 
     };
 
+    getLocation = () => {
+        
+    }
+
     render() {
 
         let rows = this.state.contacts.map((item, i) => {
