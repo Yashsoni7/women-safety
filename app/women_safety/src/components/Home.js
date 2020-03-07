@@ -45,6 +45,8 @@ export default class Home extends Component {
 
     _onPressButton(){
         let contacts = this.state.contacts;
+        if(contacts.length>=5) return;
+        
         contacts.push({
             number:'',
             name:''
@@ -89,11 +91,16 @@ export default class Home extends Component {
                 </View>
                     {rows}
                 </View>
+                
+                <TouchableHighlight onPress={()=>this.startAlert()}>
+                    <View style={styles.center,{backgroundColor:'red',width:150,height:70}}>
+                    <Text>ALERT</Text>
+                    </View>
+                </TouchableHighlight>
+
                 <View style={styles.center,{flex:1}}>       
                     <View style={styles.button}>
-                        <TouchableHighlight
-                            onPress={()=>this.onSubmit()}
-                        >
+                        <TouchableHighlight  onPress={()=>this.onSubmit()}                        >
                         <Text>get loc</Text>
                         </TouchableHighlight>
                     </View>
