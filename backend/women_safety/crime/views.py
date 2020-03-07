@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .serializers import CrimeSerializer
+from .serializers import CrimeSerializer, CrimeImageSerializer
 from rest_framework.response import Response
 from .models import Crime
 from user.models import women
 import requests
 import json
+from rest_framework.parsers import FileUploadParser
 
 @api_view(['POST'])
 def ReportCrime(request):
@@ -29,7 +30,7 @@ def ReportCrime(request):
                 res.update({"emergency_contact5":cont.emergency_contact5})
             req = requests.get('https://us1.locationiq.com/v1/reverse.php?key=c3878484ac573f&lat=' + str(data['lattitude']) + '&lon=' + str(data['longitude']) + '&format=json')
             dat = json.loads(req.text)
-            res.update({"address":dat["address"]})
+            res.update({"address":dat["display_name"]})
             print(res)
             return Response(res)
         return Response(ser.errors)
@@ -40,3 +41,15 @@ def ShowCrimes(request):
         crime_obj = Crime.objects.filter(helped=False)
         ser = CrimeSerializer(crime_obj, many=True)
         return Response(ser.data)
+
+@api_view(['POST'])
+def SendImages(request):
+    parser_class = (FileUploadParser,)
+    if request.method == "POST":
+        ser = CrimeImageSerializer(data=request.data)
+
+        if ser.is_valid():
+            ser.save()
+            print(ser.data)
+            return Response(ser.data)
+        return Response(ser.errors)
