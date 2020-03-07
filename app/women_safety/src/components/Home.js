@@ -54,7 +54,7 @@ export default class Home extends Component {
                         value={this.state.helpText}
                     />
                 </View>
-                <View flex={{flex:1}}>
+                <View style={{flex:1}}>
                     <View style={styles.contactHeader}>
                         <Text>Contacts:</Text>
                         <TouchableHighlight>
