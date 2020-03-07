@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native'
 import getLocation from '../util/GetLocation';
+import SendSMS from '../util/SendSMS';
 
 const {baseUrl} = require('../config');
 
@@ -56,6 +57,18 @@ export default class Home extends Component {
         });
         this.setState({contacts});
     };
+
+    async sendMsg(){
+        try {
+            let success = await SendSMS('9930440152',this.state.helpText);
+            this.setState({
+                helpText : '',
+            })
+        } catch (error) {
+            console.error(error);
+        }
+
+    }    
 
     async sendLocation(){
         const location =  await getLocation();
@@ -145,6 +158,15 @@ export default class Home extends Component {
                             onPress={()=>this.sendLocation()}
                         >
                         <Text>Send Location</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                <View style={styles.center,{flex:1}}>       
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.sendMsg()}
+                        >
+                        <Text>Send Message</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
