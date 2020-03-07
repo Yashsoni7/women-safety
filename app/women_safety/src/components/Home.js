@@ -47,14 +47,14 @@ export default class Home extends Component {
         return (
             <View style={{flex:1}}>
                 <View style={styles.helpmsg} >
-                    <Text> HELP MSG:</Text>
-                    <TextInput
+                    <Text style={{}}> HELP MSG:</Text>
+                    <TextInput 
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                         onChangeText={(helpText) => this.setState({helpText})}
                         value={this.state.helpText}
                     />
                 </View>
-                <View>
+                <View flex={{flex:1}}>
                     <View style={styles.contactHeader}>
                         <Text>Contacts:</Text>
                         <TouchableHighlight>
