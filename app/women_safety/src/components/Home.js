@@ -77,6 +77,13 @@ export default class Home extends Component {
                     </View>
                     {rows}
                 </View>
+                <View style={styles.button}>
+                    <TouchableHighlight
+                        onPress={()=>this.onSubmit()}
+                    >
+                    <Text>submit</Text>
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     }
