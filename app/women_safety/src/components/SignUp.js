@@ -62,29 +62,29 @@ export default class SignUp extends Component {
             <View style={{flex:1, justifyContent:"center",alignContent:'center', alignItems:'center'}}>
                 <View style={{width:200,height:200, justifyContent:"center",alignContent:'center', alignItems:'center'}}>
                   
-                <View style={styles.text} >
-                    <Text> Name: </Text>
-                    <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(name) => this.setState({name : name})}
-                        value={this.state.name}
-                    />
-                </View>
-                <View style={styles.text} >
-                    <Text> Phone Number: </Text>
-                    <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(phu) => this.setState({phu : phu})}
-                        value={this.state.phu}
-                    />
-                </View>
-                <View style={styles.button}>
-                    <TouchableHighlight
-                        onPress={()=>this.onSubmit()}
-                    >
-                        <Text>submit</Text>
-                    </TouchableHighlight>
-                </View>
+                    <View style={styles.text} >
+                        <Text> Name: </Text>
+                        <TextInput
+                            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                            onChangeText={(name) => this.setState({name : name})}
+                            value={this.state.name}
+                        />
+                    </View>
+                    <View style={styles.text} >
+                        <Text> Phone Number: </Text>
+                        <TextInput
+                            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                            onChangeText={(phu) => this.setState({phu : phu})}
+                            value={this.state.phu}
+                        />
+                    </View>
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.onSubmit()}
+                        >
+                            <Text>submit</Text>
+                        </TouchableHighlight>
+                    </View>
                   
                 </View>
             </View>

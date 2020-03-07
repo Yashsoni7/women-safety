@@ -89,12 +89,14 @@ export default class Home extends Component {
                 </View>
                     {rows}
                 </View>
-                <View style={styles.center,{flex:1}}>
-                    <TouchableHighlight  style={styles.center,styles.contactAddBtn} onPress={()=>this.getLocation()}>
-                            <View style={styles.contactAddBtn}>
-                                <Text> Get Loc</Text>
-                            </View>
-                    </TouchableHighlight>
+                <View style={styles.center,{flex:1}}>       
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.onSubmit()}
+                        >
+                        <Text>get loc</Text>
+                        </TouchableHighlight>
+                    </View>
                 </View>
             </View>
         )
