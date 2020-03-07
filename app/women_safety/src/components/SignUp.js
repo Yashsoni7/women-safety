@@ -47,6 +47,8 @@ export default class SignUp extends Component {
 
             console.log('res ',res);
 
+            this.props.navigation.navigate('Otp');
+
         
         } catch (error) {
                 

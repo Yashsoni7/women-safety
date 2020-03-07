@@ -20,6 +20,7 @@ import {
 import SignUp from './src/components/SignUp';
 import Home from './src/components/Home';
 import SplashScreen from './src/components/SplashScreen';
+import Otp from './src/components/Otp';
 
 import {
   Header,
@@ -42,6 +43,7 @@ const App: () => React$Node = () => {
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen name="SplashScreen" component={SplashScreen}/> 
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Otp" component={Otp} />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>

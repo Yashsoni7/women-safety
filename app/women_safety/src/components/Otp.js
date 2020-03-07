@@ -9,7 +9,7 @@ class Otp extends React.Component{
         }
     };
 
-    verifyOTP = () => {
+    verifyOTP = async () => {
         let url = baseUrl+'/user/verify/';
 
         
