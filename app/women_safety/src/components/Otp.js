@@ -1,6 +1,8 @@
+import React, { Component } from 'react'
+import { Text, TextInput, View, Button, StyleSheet, Alert, TouchableHighlight, AsyncStorage } from 'react-native'
 
 
-class Otp extends React.Component{
+export default class Otp extends Component{
     
     constructor(props){
         super(props);

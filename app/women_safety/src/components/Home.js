@@ -45,7 +45,7 @@ export default class Home extends Component {
     }    
 
     _onPressButton(){
-        
+
     };
 
     render() {
@@ -64,7 +64,7 @@ export default class Home extends Component {
                         value={this.state.helpText}
                     />
                 </View>
-                <View style={{flex:1}}>
+                <View style={{flex:8}}>
                     <View style={styles.contactHeader}>
                         <Text>Contacts:</Text>
                         <TouchableHighlight 
@@ -93,6 +93,8 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     },
     contactAddBtn:{
+        flex:1,
+        flexDirection:'row'
     }
 });
 

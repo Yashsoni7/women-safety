@@ -40,7 +40,7 @@ const Stack = createStackNavigator();
 const App: () => React$Node = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="SplashScreen" component={SplashScreen}/> 
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Otp" component={Otp} />

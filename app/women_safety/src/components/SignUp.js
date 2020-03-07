@@ -59,7 +59,9 @@ export default class SignUp extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{flex:1, justifyContent:"center",alignContent:'center', alignItems:'center'}}>
+                <View style={{width:200,height:200, justifyContent:"center",alignContent:'center', alignItems:'center'}}>
+                  
                 <View style={styles.text} >
                     <Text> Name: </Text>
                     <TextInput
@@ -82,6 +84,8 @@ export default class SignUp extends Component {
                     >
                         <Text>submit</Text>
                     </TouchableHighlight>
+                </View>
+                  
                 </View>
             </View>
         )

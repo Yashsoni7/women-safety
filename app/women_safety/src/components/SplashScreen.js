@@ -6,7 +6,7 @@ export default class SplashScreen extends Component {
     async componentDidMount(){
         try {
             const value = await AsyncStorage.getItem('isLoggedIn');
-            if (value !== null) {
+            if (value == true) {
               // We have data!!
               console.log('is logged in');
               this.props.navigation.navigate('Home');
