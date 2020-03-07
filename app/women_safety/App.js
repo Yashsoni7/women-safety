@@ -26,18 +26,18 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-class App extends React.Component{
-  render(){
-    return (
-      <View>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <Home />
-          <SignUp />
-        </SafeAreaView>
-      </View>
-    );
-  }
+import Home from './src/components/Home';
+
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <Home/>
+      </SafeAreaView>
+    </>
+  );
 };
 
 
