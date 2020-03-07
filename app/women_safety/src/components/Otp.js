@@ -18,6 +18,8 @@ export default class Otp extends Component{
         console.log('url ',url);
 
         try {
+
+            const phu = await AsyncStorage.getItem('phone_number');
             
             let response = await fetch(url,{
                 method: 'POST',
@@ -26,7 +28,7 @@ export default class Otp extends Component{
                 'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    phone_number: this.state.phu,
+                    phone_number: phu,
                     otp : this.state.otp,
                 }),
             });
@@ -34,10 +36,10 @@ export default class Otp extends Component{
             console.log('resp ',response);
             
             let res =await response.json();
-            
-
+        
             console.log('res ',res);
 
+            if(res.type == 'success') this.props.navigation.navigate('Home');
         
         } catch (error) {
                 
