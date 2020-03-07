@@ -45,7 +45,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{flex:1}}>
                 <View style={styles.helpmsg} >
                     <Text> HELP MSG:</Text>
                     <TextInput
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
     helpmsg:{
         flex:1,
-        flexDirection:'row'
+        flexDirection: 'row'
     },
     contactHeader:{
         flex:1,
