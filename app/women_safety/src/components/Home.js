@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TextInput, View, TouchableHighlight, StyleSheet } from 'react-native'
+import { Text, TextInput, View, TouchableHighlight, StyleSheet, FlatList } from 'react-native'
 
 
 
@@ -9,18 +9,21 @@ export default class Home extends Component {
         super(props);
         this.state={
             helpTxt:'',
-            contacts:[],
+            contacts:[{
+                number:'12345678',
+                name:'adfdgg'
+            }],
         };
     }
 
 
-    row (number = "",index){
+    row (index){
 
 
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1, flexDirection:'row'}}>
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1, margin:5}}
                     onChangeText={(name) => {
                         let contacts = this.state.contacts;
                         contacts[index].name = name;
@@ -29,21 +32,28 @@ export default class Home extends Component {
                     value={this.state.contacts[index].name}
                 />
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1, margin:5}}
                     onChangeText={(number) => {
                         let contacts = this.state.contacts;
                         contacts[index].number = number;
                         this.setState({contacts});
                     }}
                     value={this.state.contacts[index].number}
-
                 />       
             </View>
         )
     }    
 
+    _onPressButton(){
+        
+    };
 
     render() {
+
+        let rows = this.state.contacts.map((item, i) => {
+            return this.row(i);
+        })
+
         return (
             <View style={{flex:1}}>
                 <View style={styles.helpmsg} >
@@ -57,12 +67,15 @@ export default class Home extends Component {
                 <View style={{flex:1}}>
                     <View style={styles.contactHeader}>
                         <Text>Contacts:</Text>
-                        <TouchableHighlight>
+                        <TouchableHighlight 
+                            onPress={this._onPressButton.bind(this)}
+                        >
                             <View style={styles.contactAddBtn}>
                                 <Text>+</Text>
                             </View>
                         </TouchableHighlight>
                     </View>
+                    {rows}
                 </View>
             </View>
         )
@@ -77,7 +90,7 @@ const styles = StyleSheet.create({
     },
     contactHeader:{
         flex:1,
-        flexDirection:'row'    
+        flexDirection:'row'
     },
     contactAddBtn:{
     }
