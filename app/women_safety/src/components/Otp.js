@@ -1,27 +1,16 @@
-import React, { Component } from 'react'
-import { Text, TextInput, View, Button, StyleSheet, Alert, TouchableHighlight } from 'react-native'
 
-const {baseUrl} = require('../config');
 
-export default class SignUp extends Component {
-
+class Otp extends React.Component{
+    
     constructor(props){
         super(props);
         this.state = {
-            name : '',
-            otp : '',
-            phu : '',
-            ph1 : '',
-            ph2 : '',
-            ph3 : '',
-            ph4 : '',
-            ph5 : '', 
+            otp :  '', 
         }
-    }
+    };
 
-    async onSubmit(){
-        //Alert.alert("Form Submitted");
-        let url = baseUrl+'/user/number/';
+    verifyOTP = () => {
+        let url = baseUrl+'/user/verify/';
 
         
         console.log('url ',url);
@@ -36,12 +25,14 @@ export default class SignUp extends Component {
                 },
                 body: JSON.stringify({
                     phone_number: this.state.phu,
+                    otp : this.state.otp,
                 }),
             });
 
             console.log('resp ',response);
             
             let res =await response.json();
+            
 
             console.log('res ',res);
 
@@ -50,38 +41,30 @@ export default class SignUp extends Component {
                 
             console.error(error);
         }
-
-} 
+    }
 
     render() {
         return (
             <View style={{flex: 1}}>
                 <View style={styles.text} >
-                    <Text> Name: </Text>
+                    <Text> OTP: </Text>
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                         onChangeText={(name) => this.setState({name : name})}
                         value={this.state.name}
-                    />
-                </View>
-                <View style={styles.text} >
-                    <Text> Phone Number: </Text>
-                    <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(phu) => this.setState({phu : phu})}
-                        value={this.state.phu}
+                        maxLength={4}
                     />
                 </View>
                 <View style={styles.button}>
                     <TouchableHighlight
-                        onPress={()=>this.onSubmit()}
+                        onPress={()=>this.verifyOTP()}
                     >
                         <Text>submit</Text>
                     </TouchableHighlight>
                 </View>
             </View>
-        )
-    }
+        );
+    };
 }
 
 const styles = StyleSheet.create({
@@ -93,4 +76,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 });
-
