@@ -15,7 +15,8 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import SignUp from '../src/components/SignUp';
+import SignUp from './src/components/SignUp';
+import Home from './src/components/Home';
 
 import {
   Header,
@@ -31,6 +32,7 @@ class App extends React.Component{
       <View>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
+          <Home />
           <SignUp />
         </SafeAreaView>
       </View>
