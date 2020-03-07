@@ -2,18 +2,6 @@ import React, { Component } from 'react'
 import { Text, TextInput, View, TouchableHighlight } from 'react-native'
 
 
-function row (number = ""){
-
-
-    return(
-        <View style={}>
-            
-        </View>
-    )
-}
-
-
-
 export default class SignUp extends Component {
 
     constructor(){
@@ -35,9 +23,6 @@ export default class SignUp extends Component {
             [event.target.name] : event.target.value,
         })
     };
-
-
-
 
     render() {
         return (
@@ -69,7 +54,6 @@ const styles = StyleSheet.create({
 
     helpmsg:{
         flex:1,
-        flexDirection:'row'
     },
     contactHeader:{
         flex:1,

@@ -26,8 +26,6 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Home from './src/components/Home';
-
 
 const App: () => React$Node = () => {
   return (
