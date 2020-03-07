@@ -8,7 +8,7 @@ async function getlocation(){
             enableHighAccuracy: true,
             timeout: 15000,
         });
-        console.log(location.latitude , location.longitude);
+        // console.log(location.latitude , location.longitude);
         return location;
     } catch (error) {
         const { code, message } = error;

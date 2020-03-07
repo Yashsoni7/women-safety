@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, TouchableHighlight, StyleSheet, FlatList } from 'react-native'
+import { Text, TextInput, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native'
 import getLocation from '../util/GetLocation';
 
 const {baseUrl} = require('../config');
@@ -58,12 +58,16 @@ export default class Home extends Component {
     };
 
     async sendLocation(){
-        location = getLocation();
+        const location =  await getLocation();
         let lat = location.latitude;
         let long = location.longitude;
+        console.log(lat);
         let url = baseUrl+'/crime/report/';
 
         try {
+
+            // const phu = await AsyncStorage.getItem('phone_number');
+            // console.log(phu);
             
             let response = await fetch(url,{
                 method: 'POST',
@@ -72,7 +76,7 @@ export default class Home extends Component {
                 'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    number : this.state.phu
+                    number : '918779079797',
                     lattitude : lat,
                     longitude : long,
             }),
@@ -138,7 +142,7 @@ export default class Home extends Component {
                 <View style={styles.center,{flex:1}}>       
                     <View style={styles.button}>
                         <TouchableHighlight
-                            onPress={()=>sendLocation()}
+                            onPress={()=>this.sendLocation()}
                         >
                         <Text>Send Location</Text>
                         </TouchableHighlight>
