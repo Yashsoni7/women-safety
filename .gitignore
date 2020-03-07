@@ -84,5 +84,12 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
+#vscode
+/.vscode/
+
+#frontend Node modules
+/webapp/webportal/node_modules/
+
+
 #backend
 backend/env/
