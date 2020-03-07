@@ -79,9 +79,9 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.button}>
                     <TouchableHighlight
-                        onPress={()=>this.onSubmit()}
+                        onPress={()=>this.getLocation()}
                     >
-                    <Text>submit</Text>
+                    <Text>Get Location:</Text>
                     </TouchableHighlight>
                 </View>
             </View>
