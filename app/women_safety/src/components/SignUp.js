@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Text, TextInput, View, TouchableHighlight } from 'react-native'
+import { Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native'
 
 
 export default class SignUp extends Component {
 
-    constructor(){
-        super(this.props);
-        this.state={
+    constructor(props){
+        super(props);
+        this.state = {
             name : '',
             otp : '',
             phu : '',
@@ -18,31 +18,49 @@ export default class SignUp extends Component {
         }
     }
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name] : event.target.value,
+    onSubmit = (phu) => {
+        //Alert.alert("Form Submitted");
+        url = 'https://4f2677e1.ngrok.io/user/number/';
+        fetch(url,{
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              phu: phu,
+            }),
         })
-    };
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error(error);
+        });
+    } 
 
     render() {
         return (
-            <View>
-                <View style={styles.helpmsg} >
+            <View style={{flex: 1}}>
+                <View style={styles.text} >
                     <Text> Name: </Text>
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(helpText) => this.setState({helpText})}
-                        name="name"
+                        onChangeText={(name) => this.setState({name : name})}
                         value={this.state.name}
                     />
                 </View>
-                <View style={styles.helpmsg} >
-                    <Text> Name: </Text>
+                <View style={styles.text} >
+                    <Text> Phone Number: </Text>
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(helpText) => this.setState({helpText})}
-                        name="name"
-                        value={this.state.name}
+                        onChangeText={(phu) => this.setState({phu : phu})}
+                        value={this.state.phu}
+                    />
+                </View>
+                <View style={styles.button}>
+                    <Button
+                        title="Sign Up"
+                        color="#0f0f0f"
+                        onPress={this.onSubmit(this.state.phu)}
                     />
                 </View>
             </View>
@@ -52,14 +70,11 @@ export default class SignUp extends Component {
 
 const styles = StyleSheet.create({
 
-    helpmsg:{
+    text:{
         flex:1,
     },
-    contactHeader:{
-        flex:1,
-        flexDirection:'row'    
+    button:{
+        justifyContent: 'space-between',
     },
-    contactAddBtn:{
-    }
 });
 
