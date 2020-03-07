@@ -30,7 +30,8 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-        <Home/>      
+        <Home/>
+        <SignUp />      
     </>
   );
 };
