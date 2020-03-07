@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TextInput, View, Button, StyleSheet, Alert, TouchableHighlight } from 'react-native'
+import { Text, TextInput, View, Button, StyleSheet, Alert, TouchableHighlight, AsyncStorage } from 'react-native'
 
 const {baseUrl} = require('../config');
 
@@ -42,7 +42,8 @@ export default class SignUp extends Component {
             console.log('resp ',response);
             
             let res =await response.json();
-            
+
+            await AsyncStorage.setItem('phone_number', this.state.phu);
 
             console.log('res ',res);
 
