@@ -17,6 +17,7 @@ export default class Home extends Component {
                 number:'12345678',
                 name:'adfdgg'
             }],
+            message : '',
         };
     }
 
@@ -60,7 +61,7 @@ export default class Home extends Component {
 
     async sendMsg(){
         try {
-            let success = await SendSMS('9930440152',this.state.helpText);
+            let success = await SendSMS('9930440152',this.state.message);
             this.setState({
                 helpText : '',
             })
@@ -99,12 +100,10 @@ export default class Home extends Component {
             
             let res =await response.json();
 
-            await AsyncStorage.setItem('phone_number', this.state.phu);
-
             console.log('res ',res);
-
-            this.props.navigation.navigate('Otp');
-
+            this.setState({
+                message : res.address,
+            });
         
         } catch (error) {
                 
