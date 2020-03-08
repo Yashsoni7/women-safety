@@ -22,7 +22,7 @@ export default class SplashScreen extends Component {
 
     render() {
         return (
-            <View style={{flex:1,backgroundColor:'blue', justifyContent:"center",alignContent:'center', alignItems:'center'}}>
+            <View style={{flex:1,backgroundColor:'brown', justifyContent:"center",alignContent:'center', alignItems:'center'}}>
                 <Text> BETI BACHAU </Text>
             </View>
         )
