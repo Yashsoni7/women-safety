@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, TextInput, View, Button, StyleSheet, Alert, TouchableHighlight, AsyncStorage } from 'react-native'
+import {baseUrl} from '../config'
 
 
 export default class Otp extends Component{
@@ -20,6 +21,8 @@ export default class Otp extends Component{
         try {
 
             const phu = await AsyncStorage.getItem('phone_number');
+            console.log(phu);
+            
             
             let response = await fetch(url,{
                 method: 'POST',
@@ -39,7 +42,13 @@ export default class Otp extends Component{
         
             console.log('res ',res);
 
-            if(res.type == 'success') this.props.navigation.navigate('Home');
+            if(res.type == 'success'){
+                this.props.navigation.navigate('Home');
+                await AsyncStorage.setItem('isLoggedIn', true)
+            }else{
+                Alert.alert("Something Went Wrong......Try Again!!!")
+                this.props.navigation.navigate('SignUp')
+            }
         
         } catch (error) {
                 
@@ -54,8 +63,8 @@ export default class Otp extends Component{
                     <Text> OTP: </Text>
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(name) => this.setState({name : name})}
-                        value={this.state.name}
+                        onChangeText={(otp) => this.setState({otp : otp})}
+                        value={this.state.otp}
                         maxLength={4}
                     />
                 </View>

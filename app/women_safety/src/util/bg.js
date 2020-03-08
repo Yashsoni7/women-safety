@@ -76,7 +76,6 @@ module.exports = {
                 let success = await SendSMS(num,helpMsg);
                 
             });
-        
             
             
         } catch (error) {
