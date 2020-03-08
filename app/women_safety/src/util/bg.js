@@ -7,14 +7,23 @@ const URL = require('../config');
 
 module.exports = {
 
+    oneTime : async function(){
+        try {
+            // click picture
+            // upload picture and get its url
+
+        } catch (error) {
+            
+        }
+    },
+
+
     define:async function(){
 
         console.log('sending alert');
         
 
         // get 5 contacts *
-        // click picture
-        // upload picture and get its url  
         // send sms *
 
         try {
@@ -71,8 +80,8 @@ module.exports = {
             if(helpMsg === null) helpMsg = "please help me i am in distress";
             // if(contacts !==null) contacts = JSON.parse(contacts);
 
-            contacts.forEach(num => {
-
+            contacts.forEach(async num => {
+                console.log('sendin msg to ',num);
                 let success = await SendSMS(num,helpMsg);
                 
             });
