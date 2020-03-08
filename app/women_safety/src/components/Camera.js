@@ -56,12 +56,12 @@ export default class Camera extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: 'black',
   },
   preview: {
-    flex: 0,
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
