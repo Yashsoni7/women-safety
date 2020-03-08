@@ -5,7 +5,9 @@ import SendSMS from '../util/SendSMS';
 
 const {baseUrl} = require('../config');
 
-import BackgroundTask from 'react-native-background-task'
+import BackgroundTask from 'react-native-background-task';
+
+import BGModule from '../util/BGModule';
 
 export default class Home extends Component {
 
@@ -131,12 +133,14 @@ export default class Home extends Component {
     startAlert(){
         console.log('alert clicked ');
 
-        BackgroundTask.schedule({
-            period: 5*60, // Aim to run every 30 mins - more conservative on battery
-          });
+        // BackgroundTask.schedule({
+        //     period: 5*60, // Aim to run every 30 mins - more conservative on battery
+        //   });
           
-          // Optional: Check if the device is blocking background tasks or not
-          this.checkStatus();
+        //   // Optional: Check if the device is blocking background tasks or not
+        //   this.checkStatus();
+
+        BGModule.startNoti();
     }
 
 
