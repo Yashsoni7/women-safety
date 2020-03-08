@@ -49,6 +49,7 @@ export default class Home extends Component {
 
     async sendMsg(){
         try {
+            await this.sendLocation()
             // const phu = await AsyncStorage.getItem('phone_number');
             // url = basicUrl + '/'
             // let response = await fetch(url,{
