@@ -3,4 +3,5 @@ module.exports =  {
     SendOtp:'/user/number/',
     VerifyOtp:'/user/verify/',
     Report:'/crime/report/',
+    SendSms:'/sms/',
 }
