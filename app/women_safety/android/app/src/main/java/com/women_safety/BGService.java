@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
@@ -72,6 +73,15 @@ public class BGService extends Service {
                                 Intent intent2 = new Intent("GeoLocationUpdate");
                                 LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent2);
                                 Toast.makeText(getBaseContext(), "got in service ",Toast.LENGTH_SHORT).show();
+
+                                Intent service = new Intent(getApplicationContext(), MyTaskService.class);
+                                Bundle bundle = new Bundle();
+
+                                bundle.putString("foo", "bar");
+                                service.putExtras(bundle);
+
+                                getApplicationContext().startService(service);
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

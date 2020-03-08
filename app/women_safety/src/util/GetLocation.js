@@ -1,9 +1,8 @@
 import GetLocation from 'react-native-get-location';
-import {Alert} from 'react-native';
  
 async function getlocation(){
     try {
-        Alert.alert("Location Sent")
+        // Alert.alert("Location Sent")
         let location = await GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
             timeout: 15000,

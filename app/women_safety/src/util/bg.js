@@ -18,7 +18,7 @@ module.exports = {
     },
 
 
-    define:async function(){
+    test:async function(){
 
         console.log('sending alert');
         
@@ -31,6 +31,8 @@ module.exports = {
             let url = URL.baseUrl + URL.Report;
             let location =  await getLocation();
             let phu = await AsyncStorage.getItem('phone_number');
+
+            if(phu === null) phu = '918828183820';
 
             let body = {
                 number : phu,
