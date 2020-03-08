@@ -6,8 +6,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "google-map-react": "^1.1.6",
+    "leaflet": "^1.6.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-geocode": "^0.2.1",
+    "react-here-maps": "^0.4.0",
+    "react-leaflet": "^2.6.1",
     "react-scripts": "3.4.0"
   },
   "scripts": {
