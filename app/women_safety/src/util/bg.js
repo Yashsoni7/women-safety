@@ -1,5 +1,9 @@
 import BackgroundTask from 'react-native-background-task';
 
+import getLocation from '../util/GetLocation';
+import SendSMS from '../util/SendSMS';
+
+const URL = require('../config');
 
 module.exports = {
 
@@ -12,8 +16,39 @@ module.exports = {
 
         try {
 
+            let url = URL.baseUrl + URL.Report;
+            let location =  await getLocation();
+            let phu = await AsyncStorage.getItem('phone_number');
+
+            let body = {
+                number : phu,
+                lattitude : location.latitude,
+                longitude : location.longitude,
+            }
+
+            console.log('sending to ',url,body);
+            
+
+            let response = await fetch(url,{
+                method: 'POST',
+                headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+
+
+
+            console.log('resp ',response);
+            
+            let res =await response.json();
+
+            console.log('res ',res);
+        
+
             let helpMsg = await AsyncStorage.getItem('helpMsg');
-            let contacts = await AsyncStorage.getItem('helpMsg');
+            let contacts = await AsyncStorage.getItem('contacts');
 
             if(helpMsg === null) helpMsg = "please help me i am in distress";
             if(contacts !==null) contacts = JSON.parse(contacts);
