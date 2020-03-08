@@ -81,7 +81,7 @@ export default class SignUp extends Component {
                         <TouchableHighlight
                             onPress={()=>this.onSubmit()}
                         >
-                            <Text>submit</Text>
+                            <Text>SUBMIT</Text>
                         </TouchableHighlight>
                     </View>
                   
@@ -97,7 +97,17 @@ const styles = StyleSheet.create({
         flex:1,
     },
     button:{
-        justifyContent: 'space-between',
+        display: 'flex',
+        justifyContent: 'center',
+        borderRadius: 4,
+        borderWidth: 0.5,
+        borderColor: '#d6d7da',
+        backgroundColor: 'black',
+        width: 100,
+        // textColor: 'red',
+        alignItems: 'center',
+        fontSize: 19,
+        fontWeight: 'bold',
     },
 });
 
