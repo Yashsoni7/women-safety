@@ -19,6 +19,11 @@ eventEmitter.addListener('updateLocation', (event) => {
 
 
     //Alert is pressed
+
+    // push alert in db
+
+    // start background task every 5 mins
+
     bg.startAlert();
 
 });

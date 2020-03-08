@@ -10,7 +10,24 @@ module.exports = {
         // upload picture and get its url 
         // send sms
 
-        
+        try {
+
+            let helpMsg = await AsyncStorage.getItem('helpMsg');
+            let contacts = await AsyncStorage.getItem('helpMsg');
+
+            if(helpMsg === null) helpMsg = "please help me i am in distress";
+            if(contacts !==null) contacts = JSON.parse(contacts);
+
+            contacts.forEach(num => {
+
+                let success = await SendSMS(num,helpMsg);
+                
+            });
+            
+            
+        } catch (error) {
+            console.error("error in task ",error);
+        }
 
 
         console.log('sending alert');
