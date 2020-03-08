@@ -154,14 +154,14 @@ export default class Home extends Component {
 
         return (
             <View style={{flex:1}}>
-                <View style={styles.helpmsg} >
+                {/* <View style={styles.helpmsg} >
                     <Text style={{}}> HELP MSG:</Text>
                     <TextInput 
                         style={{height: 40,width:300, borderColor: 'gray', borderWidth: 1}}
                         onChangeText={(helpText) => this.setState({helpText})}
                         value={this.state.helpText}
                     />
-                </View>
+                </View> */}
                 <View style={{flex:8}}>
                     <View style={styles.contactHeader}>
                         <Text>Contacts:</Text>

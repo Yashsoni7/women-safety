@@ -9,13 +9,7 @@ export default class SignUp extends Component {
         super(props);
         this.state = {
             name : '',
-            otp : '',
             phu : '',
-            ph1 : '',
-            ph2 : '',
-            ph3 : '',
-            ph4 : '',
-            ph5 : '', 
         }
     }
 
