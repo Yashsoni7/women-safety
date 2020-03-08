@@ -1,5 +1,5 @@
 import BackgroundTask from 'react-native-background-task';
-
+import SendSMS from "../util/SendSMS";
 
 module.exports = {
 
@@ -18,11 +18,11 @@ module.exports = {
             if(helpMsg === null) helpMsg = "please help me i am in distress";
             if(contacts !==null) contacts = JSON.parse(contacts);
 
-            contacts.forEach(num => {
+            // contacts.forEach(num => {
 
-                let success = await SendSMS(num,helpMsg);
+            //     let success = await SendSMS(num,helpMsg);
                 
-            });
+            // });
             
             
         } catch (error) {

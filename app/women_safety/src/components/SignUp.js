@@ -41,13 +41,17 @@ export default class SignUp extends Component {
 
             console.log('resp ',response);
             
-            let res =await response.json();
+            // let res =await response.json();
 
             await AsyncStorage.setItem('phone_number', this.state.phu);
 
-            console.log('res ',res);
+            // console.log('res ',res);
+            if(response.status === 200){
+                this.props.navigation.navigate('Otp');
+            }else{
+                Alert.alert("Something went Wrong!")
+            }
 
-            this.props.navigation.navigate('Otp');
 
         
         } catch (error) {
