@@ -44,10 +44,14 @@ export default class Otp extends Component{
 
             if(res.type == 'success'){
                 this.props.navigation.navigate('Home');
-                await AsyncStorage.setItem('isLoggedIn', true)
+                await AsyncStorage.setItem('isLoggedIn', 'true')
             }else{
-                Alert.alert("Something Went Wrong......Try Again!!!")
-                this.props.navigation.navigate('SignUp')
+                if(res.message === "Mobile no. already verified"){
+                    this.props.navigation.navigate('Home');
+                }else{
+                    Alert.alert("Something Went Wrong......Try Again!!!")
+                    this.props.navigation.navigate('SignUp')
+                }
             }
         
         } catch (error) {

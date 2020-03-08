@@ -36,6 +36,7 @@ export default class SignUp extends Component {
                 },
                 body: JSON.stringify({
                     phone_number: this.state.phu,
+                    name: this.state.name,
                 }),
             });
 
