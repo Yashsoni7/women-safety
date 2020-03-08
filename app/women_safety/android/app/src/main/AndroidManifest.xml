@@ -42,7 +42,8 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <receiver android:name=".BGReceiver" />
-        <service android:name=".BGService" android:enabled="true" android:label="MyTaskService" />
+        <service android:name=".BGService" android:enabled="true" android:label="MyTaskService2" />
+        <service android:name=".MyTaskService" />
     </application>
 
 </manifest>
