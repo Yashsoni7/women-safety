@@ -4,7 +4,7 @@ import getLocation from '../util/GetLocation';
 import SendSMS from '../util/SendSMS';
 import Camera from '../components/Camera';
 
-const {baseUrl} = require('../config');
+import {baseUrl} from '../config';
 
 import BackgroundTask from 'react-native-background-task';
 
@@ -50,21 +50,22 @@ export default class Home extends Component {
 
     async sendMsg(){
         try {
-            // const phu = await AsyncStorage.getItem('phone_number');
-            // url = basicUrl + '/'
-            // let response = await fetch(url,{
-            //     method : 'POST',
-            //     headers: {
-            //         Accept: 'application/json',
-            //         'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify({
-            //             number : phu,
-            //     }),
-
-            // })
-            ph_no = '8828183820'
-            msg = `Please Help Me.I am in Trouble.Address ${this.state.message} `
+            await this.sendLocation()
+            const phu = await AsyncStorage.getItem('phone_number');
+            const url = baseUrl + '/user/contacts/'
+            let response = await fetch(url,{
+                method : 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        phone_number : phu,
+                }),
+            })
+            console.log("HIIIII",response.json())
+            const ph_no = '8828183820'
+            const msg = `Please Help Me.I am in Trouble.Address ${this.state.message} `
             let success = await SendSMS(ph_no,msg);
         } catch (error) {
             console.error(error);
