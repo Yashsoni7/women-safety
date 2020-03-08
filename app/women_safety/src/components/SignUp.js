@@ -62,17 +62,17 @@ export default class SignUp extends Component {
                 <View style={{width:200,height:200, justifyContent:"center",alignContent:'center', alignItems:'center'}}>
                   
                     <View style={styles.text} >
-                        <Text> Name: </Text>
+                        <Text style={{fontSize:20}}> Name: </Text>
                         <TextInput
-                            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                            style={{height: 40, borderColor: 'gray', borderWidth: 1,width:200}}
                             onChangeText={(name) => this.setState({name : name})}
                             value={this.state.name}
                         />
                     </View>
                     <View style={styles.text} >
-                        <Text> Phone Number: </Text>
+                        <Text style={{fontSize:20}}> Phone Number: </Text>
                         <TextInput
-                            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                            style={{height: 40, borderColor: 'gray', borderWidth: 1,width:200}}
                             onChangeText={(phu) => this.setState({phu : phu})}
                             value={this.state.phu}
                         />
@@ -102,12 +102,14 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 0.5,
         borderColor: '#d6d7da',
-        backgroundColor: 'black',
+        backgroundColor: 'green',
         width: 100,
+        height:40,
         // textColor: 'red',
         alignItems: 'center',
         fontSize: 19,
         fontWeight: 'bold',
+        marginTop:10
     },
 });
 
