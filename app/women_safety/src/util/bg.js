@@ -8,11 +8,14 @@ const URL = require('../config');
 module.exports = {
 
     define:async function(){
+
+        console.log('sending alert');
         
-        // get 5 contacts 
+
+        // get 5 contacts *
         // click picture
-        // upload picture and get its url 
-        // send sms
+        // upload picture and get its url  
+        // send sms *
 
         try {
 
@@ -39,33 +42,49 @@ module.exports = {
             });
 
 
-
             console.log('resp ',response);
-            
-            let res =await response.json();
 
+            
+            let res = await response.json();
+
+            // {
+            //     "emergency_contact1": 1,
+            //     "emergency_contact2": 1,
+            //     "emergency_contact3": 1,
+            //     "emergency_contact4": 1,
+            //     "emergency_contact5": 1,
+            //     "address": "90 Feet Road, Dharavi, Zone 2, Mumbai, Mumbai City, Maharashtra, BOUNDARY, India"
+            // }
             console.log('res ',res);
         
+            let contacts=[];
+            for(let i=1;i<=5;i++){
+                
+                if(res[`emergency_contact${i}`])
+                    contacts.push(res[`emergency_contact${i}`]);
+            
+            }    
 
             let helpMsg = await AsyncStorage.getItem('helpMsg');
-            let contacts = await AsyncStorage.getItem('contacts');
+            // let contacts = await AsyncStorage.getItem('contacts');
 
             if(helpMsg === null) helpMsg = "please help me i am in distress";
-            if(contacts !==null) contacts = JSON.parse(contacts);
+            // if(contacts !==null) contacts = JSON.parse(contacts);
 
             contacts.forEach(num => {
 
                 let success = await SendSMS(num,helpMsg);
                 
             });
+        
             
             
         } catch (error) {
             console.error("error in task ",error);
+        
+        
         }
 
-
-        console.log('sending alert');
         
     }.bind(this),
 
