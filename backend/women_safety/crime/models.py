@@ -8,4 +8,8 @@ class Crime(models.Model):
     helped = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.number)
+        return str(self.id)
+
+class CrimeImages(models.Model):
+    image = models.ImageField()
+
