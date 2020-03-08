@@ -18,6 +18,7 @@ export default class Home extends Component {
             helpTxt:'',
             contacts:['',],
             message : '',
+            isListening:false,
         };
     }
 
@@ -162,6 +163,7 @@ export default class Home extends Component {
     startAlert(){
         console.log('alert clicked ');
 
+        this.setState({isListening:true});    
         // BackgroundTask.schedule({
         //     period: 5*60, // Aim to run every 30 mins - more conservative on battery
         //   });
@@ -212,24 +214,23 @@ export default class Home extends Component {
                 </View>
                     {rows}
                 </View>
-                <View style={styles.center,{flex:4,backgroundColor:'yellow'}}>
+                <View style={styles.center,{flex:4}}>
 
-                <View style={styles.center}>
-                    <TouchableHighlight style={styles.center} onPress={()=>this.startAlert()}>
-                         <Text style={styles.center}>Start Listening</Text>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.center}>       
-                    <View style={styles.button}>
-                        <TouchableHighlight
-                            onPress={()=>this.sendMsg()}
-                        >
-                        <Text>Send Message</Text>
+                    <View style={styles.center,this.state.isListening?styles.btnOn:styles.btnDefault}>
+                        <TouchableHighlight style={styles.center} onPress={()=>this.startAlert()}>
+                            <Text style={styles.center,{paddingTop:7}}>Start Listening</Text>
                         </TouchableHighlight>
                     </View>
-                </View>
-                    <View style={styles.center}>       
-                        <View style={styles.button}>
+
+                    <View style={styles.center,{flex:3,flexDirection:'row',justifyContent:'space-evenly',margin:10,paddingTop:10}}>       
+                        <View style={styles.center,styles.button,{margin:10}}>
+                            <TouchableHighlight
+                                onPress={()=>this.sendMsg()}
+                            >
+                            <Text>Send Message</Text>
+                            </TouchableHighlight>
+                        </View>
+                        <View style={styles.center,styles.button,{margin:10}}>
                             <TouchableHighlight
                                 onPress={()=>this.sendPics()}
                             >
@@ -237,7 +238,8 @@ export default class Home extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                </View>
+ 
+               </View>
             </View>
         )
     }
@@ -271,7 +273,10 @@ const styles = StyleSheet.create({
     },
     center:{
         justifyContent:"center",alignContent:'center', alignItems:'center',alignSelf:'center',flex:1
-    }
+    },
+
+    btnDefault:{flex:1,borderColor:'brown',borderWidth:2, marginHorizontal:40},
+    btnOn:{flex:1,borderColor:'brown',borderWidth:2, marginHorizontal:40,backgroundColor:'brown'}
 
 });
 
