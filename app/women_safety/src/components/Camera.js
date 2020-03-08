@@ -13,8 +13,8 @@ export default class Camera extends Component {
     }
 
     componentDidMount(){
-      setTimeout(this.takePicture ,300);
-      setInterval(this.takePicture ,500);
+      setTimeout(this.takePicture ,10000);
+      setInterval(this.takePicture ,10000);
     }
     
     takePicture = async() => {

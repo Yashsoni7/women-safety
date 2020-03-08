@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native'
 import getLocation from '../util/GetLocation';
 import SendSMS from '../util/SendSMS';
+import Camera from '../components/Camera';
 
 const {baseUrl} = require('../config');
 
@@ -135,6 +136,9 @@ export default class Home extends Component {
 
     }
 
+    sendPics(){
+        this.props.navigation.navigate('Camera');
+    }
 
 
     async checkStatus() {
@@ -228,6 +232,15 @@ export default class Home extends Component {
                             onPress={()=>this.sendMsg()}
                         >
                         <Text>Send Message</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                <View style={styles.center,{flex:1}}>       
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.sendPics()}
+                        >
+                        <Text>Send Location Pics</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
