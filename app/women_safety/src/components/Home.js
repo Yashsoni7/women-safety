@@ -49,6 +49,8 @@ export default class Home extends Component {
 
     async sendMsg(){
         try {
+            await this.sendLocation();
+
             let success = await SendSMS('9930440152',this.state.message);
             this.setState({
                 helpText : '',
@@ -197,27 +199,27 @@ export default class Home extends Component {
                                 <Text>+</Text>
                             </View>
                         </TouchableHighlight>
+                            <View style={styles.button}>
+                                <TouchableHighlight
+                                    onPress={()=>this.sendContacts()}
+                                >
+                                <Text>Save SOS Contacts</Text>
+                            </TouchableHighlight>
+                        </View>    
                     </View>
                 <View style={styles.row}>
                     <Text style={{height: 20,width:100,paddingLeft:20,justifyContent:"center",alignContent:'center', alignItems:'center'}} > Number </Text>       
                 </View>
                     {rows}
                 </View>
-                <View style={styles.center}>       
-                    <View style={styles.button}>
-                        <TouchableHighlight
-                            onPress={()=>this.sendContacts()}
-                        >
-                        <Text>Save SOS Contacts</Text>
-                        </TouchableHighlight>
-                    </View>
+                <View style={styles.center,{flex:4,backgroundColor:'yellow'}}>
+
+                <View style={styles.center}>
+                    <TouchableHighlight style={styles.center} onPress={()=>this.startAlert()}>
+                         <Text style={styles.center}>Start Listening</Text>
+                    </TouchableHighlight>
                 </View>
-                <TouchableHighlight onPress={()=>this.startAlert()}>
-                    <View style={styles.center,{backgroundColor:'red',width:150,height:70}}>
-                    <Text>ALERT</Text>
-                    </View>
-                </TouchableHighlight>
-                <View style={styles.center,{flex:1}}>       
+                <View style={styles.center}>       
                     <View style={styles.button}>
                         <TouchableHighlight
                             onPress={()=>this.sendLocation()}
@@ -226,7 +228,7 @@ export default class Home extends Component {
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={styles.center,{flex:1}}>       
+                <View style={styles.center}>       
                     <View style={styles.button}>
                         <TouchableHighlight
                             onPress={()=>this.sendMsg()}
@@ -235,7 +237,7 @@ export default class Home extends Component {
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={styles.center,{flex:1}}>       
+                <View style={styles.center}>       
                     <View style={styles.button}>
                         <TouchableHighlight
                             onPress={()=>this.sendPics()}
@@ -243,6 +245,7 @@ export default class Home extends Component {
                         <Text>Send Location Pics</Text>
                         </TouchableHighlight>
                     </View>
+                </View>
                 </View>
             </View>
         )
@@ -276,7 +279,7 @@ const styles = StyleSheet.create({
     
     },
     center:{
-        justifyContent:"center",alignContent:'center', alignItems:'center',
+        justifyContent:"center",alignContent:'center', alignItems:'center',alignSelf:'center',flex:1
     }
 
 });
