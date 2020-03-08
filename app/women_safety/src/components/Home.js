@@ -49,14 +49,25 @@ export default class Home extends Component {
 
     async sendMsg(){
         try {
-            let success = await SendSMS('9930440152',this.state.message);
-            this.setState({
-                helpText : '',
-            })
+            // const phu = await AsyncStorage.getItem('phone_number');
+            // url = basicUrl + '/'
+            // let response = await fetch(url,{
+            //     method : 'POST',
+            //     headers: {
+            //         Accept: 'application/json',
+            //         'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({
+            //             number : phu,
+            //     }),
+
+            // })
+            ph_no = '8828183820'
+            msg = `Please Help Me.I am in Trouble.Address ${this.state.message} `
+            let success = await SendSMS(ph_no,msg);
         } catch (error) {
             console.error(error);
         }
-
     }    
 
     async sendLocation(){
@@ -68,7 +79,7 @@ export default class Home extends Component {
 
         try {
 
-            // const phu = await AsyncStorage.getItem('phone_number');
+            const phu = await AsyncStorage.getItem('phone_number');
             // console.log(phu);
             
             let response = await fetch(url,{
@@ -78,7 +89,7 @@ export default class Home extends Component {
                 'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    number : '918779079797',
+                    number : phu,
                     lattitude : lat,
                     longitude : long,
             }),
