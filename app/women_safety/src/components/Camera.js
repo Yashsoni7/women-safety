@@ -4,7 +4,8 @@ import { RNCamera } from 'react-native-camera';
 import {baseUrl} from '../config';
 
 export default class Camera extends Component {
-    constructor(props){
+
+  constructor(props){
       super(props);
       this.setState = {
         isCaptured1 : false,
