@@ -82,6 +82,21 @@ module.exports = async (taskData) => {
                     resolve(success);
                 },
             ); 
+
+            // fetch('https://api.twilio.com/2010-04-01/Accounts/ACc6c0ac6fb4951f1ece50912967cd3444/Messages.json',{
+            //     method:'POST',
+            //     headers:{
+            //         'ACc6c0ac6fb4951f1ece50912967cd3444':'029998f2218ed82af35e5561732b57fb'
+            //     },
+            //     body:JSON.stringify({
+            //         body:'please help me i am in distress',
+            //         from:'+12052933998',
+            //         to:num
+            //     }),
+
+            // }).then(res=>res.json())
+            // .then(data=>console.log(data))
+            // .catch(err=>console.log(err));
             
         });
         
