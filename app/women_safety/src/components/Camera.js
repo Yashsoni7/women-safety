@@ -4,7 +4,8 @@ import { RNCamera } from 'react-native-camera';
 import {baseUrl} from '../config';
 
 export default class Camera extends Component {
-    constructor(props){
+
+  constructor(props){
       super(props);
       this.setState = {
         isCaptured1 : false,
@@ -13,8 +14,13 @@ export default class Camera extends Component {
     }
 
     componentDidMount(){
-      setTimeout(this.takePicture ,300);
-      setInterval(this.takePicture ,500);
+      const b = setInterval(this.takePicture ,10000);
+      
+      setTimeout(()=>{
+        clearInterval(b);
+        this.props.navigation.navigate('Home');
+      } ,30000);
+    
     }
     
     takePicture = async() => {

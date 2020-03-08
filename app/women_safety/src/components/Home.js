@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native'
 import getLocation from '../util/GetLocation';
 import SendSMS from '../util/SendSMS';
+import Camera from '../components/Camera';
 
 const {baseUrl} = require('../config');
 
@@ -15,10 +16,7 @@ export default class Home extends Component {
         super(props);
         this.state={
             helpTxt:'',
-            contacts:[{
-                number:'12345678',
-                name:'adfdgg'
-            }],
+            contacts:['',],
             message : '',
         };
     }
@@ -30,21 +28,12 @@ export default class Home extends Component {
             <View style={styles.row}>
                 <TextInput
                     style={{height: 40,width:100, borderColor: 'gray', borderWidth: 1, margin:5}}
-                    onChangeText={(name) => {
-                        let contacts = this.state.contacts;
-                        contacts[index].name = name;
-                        this.setState({contacts});
-                    }}
-                    value={this.state.contacts[index].name}
-                />
-                <TextInput
-                    style={{height: 40,width:100, borderColor: 'gray', borderWidth: 1, margin:5}}
                     onChangeText={(number) => {
                         let contacts = this.state.contacts;
-                        contacts[index].number = number;
+                        contacts[index] = number;
                         this.setState({contacts});
                     }}
-                    value={this.state.contacts[index].number}
+                    value={this.state.contacts[index]}
                 />       
             </View>
         )
@@ -54,10 +43,7 @@ export default class Home extends Component {
         let contacts = this.state.contacts;
         if(contacts.length>=5) return;
 
-        contacts.push({
-            number:'',
-            name:''
-        });
+        contacts.push('');
         this.setState({contacts});
     }
 
@@ -107,12 +93,53 @@ export default class Home extends Component {
                 message : res.address,
             });
         
-        } catch (error) {
-                
+        } catch (error) {    
             console.error(error);
         }
 
     }
+
+    async sendContacts(){
+        let url = baseUrl + '/user/signup/';
+
+        try {
+
+            // const phu = await AsyncStorage.getItem('phone_number');
+            // console.log(phu);
+            const phu = await AsyncStorage.getItem('phone_number');
+
+            let body = {}
+            body["phone_number"] = phu ;
+            console.log(this.state.contacts)
+            this.state.contacts.forEach((item,index,array) => {
+                console.log(item)
+                body[`emergency_contact${index+1}`] = item;
+            });
+            console.log(body)
+                 
+            let response = await fetch(url,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+        });
+
+            console.log('resp ',response);
+            
+            let res = await response.json();
+
+            console.log('res ',res);
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    sendPics(){
+        this.props.navigation.navigate('Camera');
+    }
+
 
     async checkStatus() {
         const status = await BackgroundTask.statusAsync()
@@ -172,18 +199,24 @@ export default class Home extends Component {
                         </TouchableHighlight>
                     </View>
                 <View style={styles.row}>
-                    <Text style={{height: 20,width:100,paddingLeft:20,justifyContent:"center",alignContent:'center', alignItems:'center'}}> Name </Text>
                     <Text style={{height: 20,width:100,paddingLeft:20,justifyContent:"center",alignContent:'center', alignItems:'center'}} > Number </Text>       
                 </View>
                     {rows}
                 </View>
-                
+                <View style={styles.center}>       
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.sendContacts()}
+                        >
+                        <Text>Save SOS Contacts</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
                 <TouchableHighlight onPress={()=>this.startAlert()}>
                     <View style={styles.center,{backgroundColor:'red',width:150,height:70}}>
                     <Text>ALERT</Text>
                     </View>
                 </TouchableHighlight>
-
                 <View style={styles.center,{flex:1}}>       
                     <View style={styles.button}>
                         <TouchableHighlight
@@ -199,6 +232,15 @@ export default class Home extends Component {
                             onPress={()=>this.sendMsg()}
                         >
                         <Text>Send Message</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                <View style={styles.center,{flex:1}}>       
+                    <View style={styles.button}>
+                        <TouchableHighlight
+                            onPress={()=>this.sendPics()}
+                        >
+                        <Text>Send Location Pics</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
