@@ -222,30 +222,21 @@ export default class Home extends Component {
                 <View style={styles.center}>       
                     <View style={styles.button}>
                         <TouchableHighlight
-                            onPress={()=>this.sendLocation()}
-                        >
-                        <Text>Send Location</Text>
-                        </TouchableHighlight>
-                    </View>
-                </View>
-                <View style={styles.center}>       
-                    <View style={styles.button}>
-                        <TouchableHighlight
                             onPress={()=>this.sendMsg()}
                         >
                         <Text>Send Message</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={styles.center}>       
-                    <View style={styles.button}>
-                        <TouchableHighlight
-                            onPress={()=>this.sendPics()}
-                        >
-                        <Text>Send Location Pics</Text>
-                        </TouchableHighlight>
+                    <View style={styles.center}>       
+                        <View style={styles.button}>
+                            <TouchableHighlight
+                                onPress={()=>this.sendPics()}
+                            >
+                            <Text>Send Location Pics</Text>
+                            </TouchableHighlight>
+                        </View>
                     </View>
-                </View>
                 </View>
             </View>
         )
