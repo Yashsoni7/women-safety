@@ -63,10 +63,19 @@ export default class Home extends Component {
                         phone_number : phu,
                 }),
             })
-            console.log("HIIIII",response.json())
-            const ph_no = '8828183820'
+            let res = await response.json()
+            console.log(res)
+            let contacs=[];
+            for(let i=1;i<=5;i++){
+                if(res[`emergency_contact${i}`])
+                    contacs.push(res[`emergency_contact${i}`]);
+            
+            }
             const msg = `Please Help Me.I am in Trouble.Address ${this.state.message} `
-            let success = await SendSMS(ph_no,msg);
+            console.log(contacs)
+            contacs.forEach(async num => {
+                let success = await SendSMS(JSON.stringify(num),msg);
+            })
         } catch (error) {
             console.error(error);
         }

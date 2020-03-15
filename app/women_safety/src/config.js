@@ -1,5 +1,5 @@
 module.exports =  {
-    baseUrl:'https://dceed598.ngrok.io',
+    baseUrl:'https://221bf314.ngrok.io',
     SendOtp:'/user/number/',
     VerifyOtp:'/user/verify/',
     Report:'/crime/report/',
