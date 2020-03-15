@@ -48,6 +48,7 @@ export default class Otp extends Component{
             }else{
                 if(res.message === "Mobile no. already verified"){
                     this.props.navigation.navigate('Home');
+                    await AsyncStorage.setItem('isLoggedIn', 'true')
                 }else{
                     Alert.alert("Something Went Wrong......Try Again!!!")
                     this.props.navigation.navigate('SignUp')

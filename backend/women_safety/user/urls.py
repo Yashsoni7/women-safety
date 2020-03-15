@@ -5,5 +5,6 @@ urlpatterns = [
     path('signup/',views.SignupAPI),
     path('number/',views.PhoneNumberAPI),
     path('verify/',views.OTPVerify),
-    path('contacts/',views.ShowContacts)
+    path('contacts/',views.ShowContacts),
+    # path('sms/',views.SendSMS)
 ]
