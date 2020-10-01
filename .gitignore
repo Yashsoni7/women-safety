@@ -17,6 +17,7 @@ out/
 #  Uncomment the following line in case you need and you don't have the release build type files in your app
 # release/
 
+
 # Gradle files
 .gradle/
 build/
@@ -89,6 +90,8 @@ lint/tmp/
 
 #frontend Node modules
 /webapp/webportal/node_modules/
+
+/webapp/node_modules/
 
 
 #backend
