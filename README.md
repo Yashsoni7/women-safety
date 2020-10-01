@@ -1,5 +1,5 @@
 # women-safety-app
-## Womens safety app was made during the codeshastra hackathon by a group of 4. Womens safety was the center of attention for this app. features such as reporting your current location to trusted contacts as well as nearest police station also capturing photo of culprit by long pressing the volume button.
+### Womens safety app was made during the codeshastra hackathon by a group of 4. Womens safety was the center of attention for this app. features such as reporting your current location to trusted contacts as well as nearest police station also capturing photo of culprit by long pressing the volume button.
 
 ### Technology stack
 
